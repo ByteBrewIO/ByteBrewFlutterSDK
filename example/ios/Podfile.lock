@@ -1,0 +1,22 @@
+PODS:
+  - bytebrew_sdk (0.0.9):
+    - Flutter
+  - Flutter (1.0.0)
+
+DEPENDENCIES:
+  - bytebrew_sdk (from `.symlinks/plugins/bytebrew_sdk/ios`)
+  - Flutter (from `Flutter`)
+
+EXTERNAL SOURCES:
+  bytebrew_sdk:
+    :path: ".symlinks/plugins/bytebrew_sdk/ios"
+  Flutter:
+    :path: Flutter
+
+SPEC CHECKSUMS:
+  bytebrew_sdk: 00a6b892cb813ad0dd37abc5d05f52df50599b4e
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+
+PODFILE CHECKSUM: 8e679eca47255a8ca8067c4c67aab20e64cb974d
+
+COCOAPODS: 1.11.3
