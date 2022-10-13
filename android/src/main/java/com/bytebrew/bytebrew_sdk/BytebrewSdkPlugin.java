@@ -22,7 +22,7 @@ public class BytebrewSdkPlugin implements FlutterPlugin, MethodCallHandler {
   /// when the Flutter Engine is detached from the Activity
   private MethodChannel channel;
   private Context currentContext;
-  private final String SDKVersion = "0.0.8";
+  private final String SDKVersion = "0.1.0";
   private boolean initializedCalled;
 
   @Override
@@ -48,6 +48,11 @@ public class BytebrewSdkPlugin implements FlutterPlugin, MethodCallHandler {
         String flutterVersion = "FLUTTER@" + SDKVersion;
         ByteBrew.InitializeByteBrew(appID, appKey, flutterVersion, currentContext);
         initializedCalled = true;
+        break;
+      }
+      case "IsByteBrewInitialized":
+      {
+        result.success(ByteBrew.IsByteBrewInitialized());
         break;
       }
       case "StartPushNotifications":

@@ -1,6 +1,6 @@
 #import "BytebrewSdkPlugin.h"
 
-#import "ByteBrewNativeiOSPlugin/ByteBrewNativeiOSPlugin.h"
+#import <ByteBrewNativeiOSPlugin/ByteBrewNativeiOSPlugin.h>
 
 @implementation BytebrewSdkPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
@@ -18,7 +18,10 @@
    } else if([call.method isEqualToString:@"Initialize"]) {
       NSMutableDictionary* parameterVals = call.arguments;
 
-      [ByteBrewNativeiOSPlugin InitializeWithSettings:[parameterVals valueForKey:@"appID"] SecretKey:[parameterVals valueForKey:@"appKey"] EngineVersion:@"FLUTTER@0.0.8" BuildVersion:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+      [ByteBrewNativeiOSPlugin InitializeWithSettings:[parameterVals valueForKey:@"appID"] SecretKey:[parameterVals valueForKey:@"appKey"] EngineVersion:@"FLUTTER@0.1.0" BuildVersion:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+  } else if([call.method isEqualToString:@"IsByteBrewInitialized"]) {
+    NSNumber* initHas = [NSNumber numberWithBool:[ByteBrewNativeiOSPlugin IsByteBrewInitialized]];
+    result(initHas);
   } else if([call.method isEqualToString:@"StartPushNotifications"]) {
 
       [ByteBrewNativeiOSPlugin StartPushNotification];

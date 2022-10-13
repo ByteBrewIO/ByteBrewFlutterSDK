@@ -27,6 +27,11 @@ class ByteBrewSdk {
     _channel.invokeMethod("Initialize", {'appID': appID, 'appKey': appKey});
   }
 
+  ///returns bool based on whether ByteBrew is done initializing
+  static Future<bool> isByteBrewInitialized() async {
+    return await _channel.invokeMethod("IsByteBrewInitialized");
+  }
+
   ///Starts Push Notifications for your app.
   ///Make sure to configure correct Android Setting on your dashboard.
   static void startPushNotifications() {

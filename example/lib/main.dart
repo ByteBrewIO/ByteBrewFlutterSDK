@@ -70,6 +70,9 @@ class _MyAppState extends State<MyApp> {
                 Text('Remote Configs on: $_remoteConfigsStuff\n'),
                 TextButton(
                     onPressed: () {
+                      ByteBrewSdk.isByteBrewInitialized().then((value) => {
+                        log("Has Initialized: $value")
+                      });
                       ByteBrewSdk.getUserID().then((value) => {
                         setState(() {
                           _user = value ?? "No User";
