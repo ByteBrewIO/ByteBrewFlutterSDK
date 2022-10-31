@@ -20,6 +20,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   String _user = 'Unknown';
   String _remoteConfigsStuff = "N/A";
+  String _abConfigsStuff = "N/A";
 
   @override
   void initState() {
@@ -68,6 +69,7 @@ class _MyAppState extends State<MyApp> {
               children: [
                 Text('Running on: $_user\n'),
                 Text('Remote Configs on: $_remoteConfigsStuff\n'),
+                Text('A/B Test Configs on: $_abConfigsStuff\n'),
                 TextButton(
                     onPressed: () {
                       ByteBrewSdk.isByteBrewInitialized().then((value) => {
@@ -161,6 +163,21 @@ class _MyAppState extends State<MyApp> {
                       });
                     },
                     child: Text("Get Remote Configs")
+                ),
+                TextButton(
+                    onPressed: () {
+                      ByteBrewSdk.hasRemoteConfigs().then((value) => {
+                        log("Has configs: $value")
+                      });
+                      ByteBrewSdk.loadRemoteConfigs().then((value) => {
+                        ByteBrewSdk.retrieveRemoteConfigValue("colors_key", "test_Color").then((value) => {
+                          setState(() {
+                            _abConfigsStuff = value ?? "nothing";
+                          })
+                        })
+                      });
+                    },
+                    child: Text("Get A/B Configs")
                 ),
               ],
             ),
