@@ -18,7 +18,7 @@
    } else if([call.method isEqualToString:@"Initialize"]) {
       NSMutableDictionary* parameterVals = call.arguments;
 
-      [ByteBrewNativeiOSPlugin InitializeWithSettings:[parameterVals valueForKey:@"appID"] SecretKey:[parameterVals valueForKey:@"appKey"] EngineVersion:@"FLUTTER@0.1.1" BuildVersion:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+      [ByteBrewNativeiOSPlugin InitializeWithSettings:[parameterVals valueForKey:@"appID"] SecretKey:[parameterVals valueForKey:@"appKey"] EngineVersion:@"FLUTTER@0.1.2" BuildVersion:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
   } else if([call.method isEqualToString:@"IsByteBrewInitialized"]) {
     NSNumber* initHas = [NSNumber numberWithBool:[ByteBrewNativeiOSPlugin IsByteBrewInitialized]];
     result(initHas);
