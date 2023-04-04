@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'bytebrew_sdk'
-  s.version          = '0.0.9'
+  s.version          = '0.1.0'
   s.summary          = 'ByteBrew Flutter SDK Plugin'
   s.description      = <<-DESC
 ByteBrew Flutter SDK Plugin

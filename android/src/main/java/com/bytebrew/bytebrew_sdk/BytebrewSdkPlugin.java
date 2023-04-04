@@ -22,7 +22,7 @@ public class BytebrewSdkPlugin implements FlutterPlugin, MethodCallHandler {
   /// when the Flutter Engine is detached from the Activity
   private MethodChannel channel;
   private Context currentContext;
-  private final String SDKVersion = "0.1.2";
+  private final String SDKVersion = "0.1.3";
   private boolean initializedCalled;
 
   @Override
