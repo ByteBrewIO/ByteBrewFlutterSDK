@@ -18,7 +18,7 @@
    } else if([call.method isEqualToString:@"Initialize"]) {
       NSMutableDictionary* parameterVals = call.arguments;
 
-      [ByteBrewNativeiOSPlugin InitializeWithSettings:[parameterVals valueForKey:@"appID"] SecretKey:[parameterVals valueForKey:@"appKey"] EngineVersion:@"FLUTTER@0.1.3" BuildVersion:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+      [ByteBrewNativeiOSPlugin InitializeWithSettings:[parameterVals valueForKey:@"appID"] SecretKey:[parameterVals valueForKey:@"appKey"] EngineVersion:@"FLUTTER@0.1.4" BuildVersion:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
   } else if([call.method isEqualToString:@"IsByteBrewInitialized"]) {
     NSNumber* initHas = [NSNumber numberWithBool:[ByteBrewNativeiOSPlugin IsByteBrewInitialized]];
     result(initHas);
@@ -104,6 +104,28 @@
       } else {
           [ByteBrewNativeiOSPlugin NewTrackedAdEvent:adTypeSTR AdLocation:adLocation];
       }
+
+  } else if([call.method isEqualToString:@"TrackAdEventRevenue"]) {
+          NSMutableDictionary* parameterVals = call.arguments;
+          NSNumber* adType = [parameterVals valueForKey:@"adType"];
+          NSString* adProvider = [parameterVals valueForKey:@"adProvider"];
+          NSString* adUnitName = [parameterVals valueForKey:@"adUnitName"];
+          NSNumber* revenue = [parameterVals valueForKey:@"revenue"];
+
+          NSString* adTypeSTR = @"";
+          if([adType intValue] == 0) {
+              adTypeSTR = @"Interstitial";
+          } else if([adType intValue] == 1) {
+              adTypeSTR = @"Reward";
+          } else if([adType intValue] == 2) {
+              adTypeSTR = @"Banner";
+          }
+          if([parameterVals valueForKey:@"adLocation"] != nil) {
+              NSString* adLocation = [parameterVals valueForKey:@"adLocation"];
+              [ByteBrewNativeiOSPlugin NewTrackedAdEvent:adTypeSTR AdProvider:adProvider AdUnitName:adUnitName AdLocation:adLocation Revenue:[revenue doubleValue]];
+          } else {
+              [ByteBrewNativeiOSPlugin NewTrackedAdEvent:adTypeSTR AdProvider:adProvider AdUnitName:adUnitName Revenue:[revenue doubleValue]];
+          }
 
   } else if([call.method isEqualToString:@"TrackInAppPurchase"]) {
       NSMutableDictionary* parameterVals = call.arguments;

@@ -121,6 +121,16 @@ class ByteBrewSdk {
     _channel.invokeMethod("TrackAdEvent", {'adType': adType.index, 'adLocation': adLocation, 'adID': adID, 'adProvider': adProvider});
   }
 
+  ///Add a new Ad Event, broken down by the adID shown, and Ad Provider
+  static void trackAdEventWithRevenue(ByteBrewAdType adType, String adProvider, String adUnitName, double revenue) {
+    _channel.invokeMethod("TrackAdEventRevenue", {'adType': adType.index, 'adProvider': adProvider, 'adUnitName': adUnitName, 'revenue': revenue});
+  }
+
+  ///Add a new Ad Event, broken down by the adID shown, and Ad Provider
+  static void trackAdEventWithAdLocationRevenue(ByteBrewAdType adType, String adProvider, String adUnitName, String adLocation, double revenue) {
+    _channel.invokeMethod("TrackAdEventRevenue", {'adType': adType.index, 'adProvider': adProvider, 'adUnitName': adUnitName, 'adLocation': adLocation, 'revenue': revenue});
+  }
+
   ///Track a regular in-app purchase event, this is without validation.
   static void trackInAppPurchase(String store, String currency, double amount, String itemID, String category) {
     _channel.invokeMethod("TrackInAppPurchase", {'store': store, 'currency': currency, 'amount': amount, 'itemID': itemID, 'category': category});

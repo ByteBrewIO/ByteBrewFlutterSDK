@@ -22,7 +22,7 @@ public class BytebrewSdkPlugin implements FlutterPlugin, MethodCallHandler {
   /// when the Flutter Engine is detached from the Activity
   private MethodChannel channel;
   private Context currentContext;
-  private final String SDKVersion = "0.1.3";
+  private final String SDKVersion = "0.1.4";
   private boolean initializedCalled;
 
   @Override
@@ -126,6 +126,21 @@ public class BytebrewSdkPlugin implements FlutterPlugin, MethodCallHandler {
           }
         } else {
           ByteBrew.TrackAdEvent(ByteBrewAdType.values()[adType], adLocation);
+        }
+        break;
+      }
+      case "TrackAdEventRevenue":
+      {
+        Integer adType = call.argument("adType");
+        String adProvider = call.argument("adProvider");
+        String adUnitName = call.argument("adUnitName");
+        Double revenue = call.argument("revenue");
+
+        if(call.hasArgument("adLocation")) {
+          String adLocation = call.argument("adLocation");
+          ByteBrew.TrackAdEvent(ByteBrewAdType.values()[adType], adProvider, adUnitName, adLocation, revenue);
+        } else {
+          ByteBrew.TrackAdEvent(ByteBrewAdType.values()[adType], adProvider, adUnitName, revenue);
         }
         break;
       }

@@ -1,6 +1,6 @@
 name: bytebrew_sdk
 description: Official ByteBrew Flutter SDK Plugin. ByteBrew is the free easy to integrate SDK that provides your app with Real-Time Analytic Tracking, Monetization Tracking, Attribution, Remote Configs and A/B Testing, Server-Side Purchase Validation, Push Notifications and more.
-version: 0.1.3
+version: 0.1.4
 homepage: https://bytebrew.io
 repository: https://github.com/ByteBrewIO/ByteBrewFlutterSDK
 documentation: https://docs.bytebrew.io/sdk/flutter
